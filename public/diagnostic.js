@@ -36,5 +36,8 @@ let Cart = Ember.Object.extend({
   orders: Ember.A([]),
   addToCart: function(item) {
     this.orders.pushObject(item);
-  }
+  },
+  totalPrice: Ember.computed('orders', function() {
+    return this.orders.reduce((prev, curr) => prev + curr.get('orderPrice'), 0);
+  })
 });
